@@ -1,0 +1,358 @@
+{
+  "surface": "dashboard",
+  "title": "Synthèse d’ammoniac · Étude thermo-cinétique",
+  "generatedAt": "2026-10-01T17:01:18.279935+00:00",
+  "buildStatus": "complete",
+  "status": "scenario",
+  "filters": [],
+  "queries": {
+    "design": {
+      "rows": [
+        {
+          "parameter": "production_annuelle",
+          "value": 100000,
+          "unit": "t NH3/an",
+          "classification": "exigence utilisateur"
+        },
+        {
+          "parameter": "hours",
+          "label": "Heures de fonctionnement",
+          "value": 8256,
+          "unit": "h/an",
+          "classification": "rapport du 27 septembre 2026 : 365 jours moins 3 semaines d’arrêt"
+        },
+        {
+          "parameter": "pMin",
+          "label": "Pression minimale",
+          "value": 80,
+          "unit": "bar",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "pMax",
+          "label": "Pression maximale",
+          "value": 250,
+          "unit": "bar",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "tMin",
+          "label": "Entrée : température minimale",
+          "value": 350,
+          "unit": "°C",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "tMax",
+          "label": "Entrée : température maximale",
+          "value": 450,
+          "unit": "°C",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "limitT",
+          "label": "Plafond thermique des lits",
+          "value": 550,
+          "unit": "°C",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "maxBeds",
+          "label": "Nombre maximal de lits",
+          "value": 6,
+          "unit": "lits",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "maxExposure",
+          "label": "Catalyseur / débit N₂ : plafond par lit",
+          "value": 150,
+          "unit": "kg·h/kmol",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "r0",
+          "label": "Vitesse de référence à 700 K, 150 bar",
+          "value": 0.03,
+          "unit": "kmol N₂/(kg·h)",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "ea",
+          "label": "Énergie d’activation",
+          "value": 100,
+          "unit": "kJ/mol",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "activity",
+          "label": "Activité relative",
+          "value": 1,
+          "unit": "—",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "purge",
+          "label": "Purge des gaz après séparation",
+          "value": 0,
+          "unit": "fraction",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "dpBed",
+          "label": "Perte de pression par lit",
+          "value": 1,
+          "unit": "bar",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "dpCool",
+          "label": "Perte par échangeur inter-lit",
+          "value": 0.5,
+          "unit": "bar",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "dpLoop",
+          "label": "Autres pertes de boucle",
+          "value": 3,
+          "unit": "bar",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "feedP",
+          "label": "Pression des gaz frais",
+          "value": 20,
+          "unit": "bar",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "compT",
+          "label": "Température de compression",
+          "value": 35,
+          "unit": "°C",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "compEta",
+          "label": "Rendement isotherme équivalent",
+          "value": 0.75,
+          "unit": "fraction",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "recovery",
+          "label": "Fraction de chaleur chimique valorisée",
+          "value": 0.65,
+          "unit": "fraction",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "electricEta",
+          "label": "Rendement chaleur → électricité",
+          "value": 0.25,
+          "unit": "fraction",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "refrigeration",
+          "label": "Réfrigération spécifique NH₃",
+          "value": 35,
+          "unit": "kWh/t",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "circulationCooling",
+          "label": "Auxiliaires de refroidissement du gaz",
+          "value": 0.4,
+          "unit": "kWh/kmol circulé",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "electricity",
+          "label": "Électricité, achat et crédit",
+          "value": 900,
+          "unit": "MAD/MWh",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "n2Cost",
+          "label": "Coût N₂ frais (optionnel)",
+          "value": 0,
+          "unit": "MAD/t",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "h2Cost",
+          "label": "Coût H₂ frais (optionnel)",
+          "value": 0,
+          "unit": "MAD/t",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "reactorCost",
+          "label": "Réacteur de référence à 20 m³, 150 bar",
+          "value": 40000000,
+          "unit": "MAD",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "extraBed",
+          "label": "Internes par lit additionnel",
+          "value": 6500000,
+          "unit": "MAD",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "exchangerCost",
+          "label": "Échangeur de référence à 1 MW",
+          "value": 2000000,
+          "unit": "MAD",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "compressorCost",
+          "label": "Compression de référence à 1 MW",
+          "value": 10000000,
+          "unit": "MAD",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "catCost",
+          "label": "Catalyseur",
+          "value": 100,
+          "unit": "MAD/kg",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "catLife",
+          "label": "Durée de vie du catalyseur",
+          "value": 5,
+          "unit": "ans",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "density",
+          "label": "Densité apparente du catalyseur",
+          "value": 2200,
+          "unit": "kg/m³",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "discount",
+          "label": "Taux d’actualisation",
+          "value": 0.08,
+          "unit": "fraction/an",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "life",
+          "label": "Durée économique",
+          "value": 20,
+          "unit": "ans",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "maintenance",
+          "label": "Maintenance annuelle / CAPEX",
+          "value": 0.025,
+          "unit": "fraction/an",
+          "classification": "hypothèse modifiable non mesurée"
+        },
+        {
+          "parameter": "report_pressure",
+          "value": 122.5,
+          "unit": "bar abs",
+          "classification": "point conservé du rapport"
+        },
+        {
+          "parameter": "report_conversion",
+          "value": 0.3225,
+          "unit": "fraction",
+          "classification": "point conservé du rapport"
+        },
+        {
+          "parameter": "report_beds",
+          "value": 3,
+          "unit": "lits",
+          "classification": "point conservé du rapport"
+        },
+        {
+          "parameter": "historical_cost_8000h",
+          "value": 348.24,
+          "unit": "MAD/t",
+          "classification": "screening historique 8000 h/an, non actualisé dans le PDF"
+        }
+      ],
+      "source": {
+        "label": "Rapport de synthèse NH₃ · révision 8 256 h/an",
+        "description": "Rapport utilisateur du 27 septembre 2026. Production 100000 t/an, trois semaines d’arrêt, 8256 h/an. Point retenu trois lits, 122,5 bar, conversion 32,25 %. Les résultats interactifs sont des scénarios calculés, non des mesures industrielles.",
+        "evidenceFlow": [
+          {
+            "title": "Exigence utilisateur",
+            "detail": "Message du 23 septembre 2026 : outlet flux of NH3 100000 tonnes per year ; autres paramètres à optimiser."
+          },
+          {
+            "title": "Thermodynamique",
+            "detail": "NIST Chemistry WebBook SRD69, coefficients de Shomate NH3, N2 et H2 consultés le 23 septembre 2026. Équilibre gazeux idéal, état standard 1 bar."
+          },
+          {
+            "title": "Calcul",
+            "detail": "Module model.mjs livré dans src/content/dashboard : intégration adiabatique, bilan de recycle, comparaison discrète de configurations à débit produit constant. Cinétique réversible de substitution et coûts hypothétiques."
+          },
+          {
+            "title": "Rapport utilisateur révisé",
+            "detail": "Synthese_ammoniac_100000_t_an_8256h_style_vert.pdf, 19 pages, daté du 27 septembre 2026. Sections 1, 2, 5–10 : base8256h, masses, choix des lits, modèle, énergie, économiehistorique et instrumentation. Le fichier local original est conservé ; aucune URL publique du PDF n’est présumée."
+          }
+        ],
+        "metricDefinitions": [
+          {
+            "label": "Conversion par passage",
+            "definition": "Fraction du N2 entrant dans le réacteur consommée sur l’ensemble des lits. Distincte de la conversion globale des réactifs frais."
+          },
+          {
+            "label": "Coût partiel de synthèse",
+            "definition": "CAPEX annualisé, maintenance, remplacement du catalyseur et électricité nette de la boucle ; hors coût de production H2/N2, stockage et ingénierie détaillée."
+          },
+          {
+            "label": "Meilleur candidat",
+            "definition": "Minimum sur la grille explorée pour les hypothèses actives. Pas une preuve d’optimum global ni une conception industrielle validée."
+          }
+        ],
+        "caveats": [
+          "Gaz idéaux à haute pression : remplacer par fugacités validées pour la conception.",
+          "Aucune cinétique fournisseur, aucun devis d’équipement disponibles.",
+          "Séparation NH3 complète, mélange H2:N2=3:1, absence d’inertes : hypothèses de modèle.",
+          "Le coût348,24MAD/t et le tableau1–6lits du PDF proviennent du screening8000h. Les coûts interactifs sont recalculés aux hypothèsesactives.",
+          "Corrections arithmétiques du rapport : à8256h, point conservé, chaleur inter-lits8,8188MWth, chaleur chimique9,06794MWth, couverture électrique30,6900%. Les passages9,10/9,36MW et30,2% sont obsolètes.",
+          "La correction8000→8256h ne prouve pas un nouvel optimum. Un mode distinct lance la recherche en conservant le point du rapport comme candidat admissible si les contraintes sont respectées."
+        ],
+        "links": [
+          {
+            "label": "NIST NH3",
+            "url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C7664417&Mask=1"
+          },
+          {
+            "label": "NIST N2",
+            "url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C7727379&Mask=1"
+          },
+          {
+            "label": "NIST H2",
+            "url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C1333740&Mask=1"
+          }
+        ]
+      },
+      "methods": [
+        {
+          "language": "text",
+          "code": "Débit NH3 = 100000*1000/(17.03052*heures_annuelles) kmol/h. Pour chaque configuration : intégrer les lits, imposer FN2_reacteur=FNH3/(2X), calculer recycle et purge, coûts annuels et classement."
+        },
+        {
+          "language": "text",
+          "code": "Base H=(365−3×7)*24=8256 h/an. Reproduire le pointrapport avecsimulate(REPORT_REFERENCE,defaults,true,0.0005). N2consommé=100000*28.0134/(2*17.03052)t/an,H2consommé=100000*3*2.01588/(2*17.03052). Entrée=B/X ; recycle=(1−p)(1−X)B/X ; frais=B[1+p(1−X)/X]. Débits horaires=tonnageannuel/H. Énergie et chargecatalytique du point conservé changent par8000/8256. Coûts recalculés par les corrélations ; tableauhistorique identifié séparément."
+        }
+      ]
+    }
+  },
+  "id": "dashboard:07f86b8a-69e1-485e-bc47-fb62fd1af6ed"
+}

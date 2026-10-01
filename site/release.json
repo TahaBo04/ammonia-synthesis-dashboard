@@ -1,0 +1,31 @@
+{
+  "createdAt": "2026-10-01T17:01:30.410Z",
+  "files": {
+    "data-app-build.json": "16f772ed5dc059049197fa3b286669949ebed4279c785abd8cfded7ba79a8247",
+    "index.html": "ce71fefc4bd44a713c9dc3dbefd19ebb397517a1a133c0bfa32600a142b74329",
+    "snapshot.c5561d61ebdae8687dbaf293f6ffda084558c7643f279f16ae32eb3c013c8ad1.json": "c5561d61ebdae8687dbaf293f6ffda084558c7643f279f16ae32eb3c013c8ad1"
+  },
+  "sources": {
+    "src/content/assets/README.md": "1a17117302d00a4301c95b0562c12a244e38efe35aa508831ea404e7051556d7",
+    "src/content/assets/report-flowsheet.png": "e015eabb4fdfcc3a71dcef5fbdb94387ec049ada085212e06fa85d7456877281",
+    "src/content/dashboard/ammonia.css": "92249b7874c1c20d59db0e2393d68b075019241b2affc4cbcacab6f695a3c6b6",
+    "src/content/dashboard/AmmoniaApp.jsx": "3054d6241e4eff87b3dd5705bc39a0f8bef739eee66beeb80167e1b25ebcf1a0",
+    "src/content/dashboard/dashboard-data.js": "b33132f59883284ffedfbb13c6f1fd8bd4d7906c708896dd659ae435c1b75003",
+    "src/content/dashboard/dashboard.css": "591d1eecf0ef77ca0322833cad73d203acf22e194cfecb48e6c20aa8c6aaa2d5",
+    "src/content/dashboard/DashboardContent.jsx": "bd6377db6103ee300cb5ae07381a263202324adfbe5e1d8c42e42bdb09d6c33b",
+    "src/content/dashboard/model.mjs": "346be99330bfe02f33b6e1e4bb0be4c24921cf29ee90fbc1f28cec864bc83277",
+    "src/content/dashboard/model.test.mjs": "0be5a47408e2e2d663e92982d26a56b5a9404e018da879592b8449bb15593d8f",
+    "src/content/dashboard/regional-world-map.js": "d5fd8be03342924d4b19c71b173815c084e032686a8f3b0df706bea3a08a5f54",
+    "src/content/dashboard/ReportView.jsx": "2567d63b99c07cf038ba120820bb37765bb9e7f7671f2bc3981cc267c1578183",
+    "src/content/report/report.css": "b0aed6d085aa46b2b4bace26ebcf4120d0c267a74fa5dcc87bdba2a2dff4f88e",
+    "src/content/report/ReportContent.jsx": "0af29196a6714b72f895de4acbb70205fddda8ed7fde05245ff7103e86f0fe40",
+    "src/content/shared/README.md": "36ae02985b054edb3e526dd75d89d019c4ac6ec14d70f58b40c83d439c6dbf8f",
+    "src/content/shared/report-disclosure.css": "64e07e80151cd95e175185510f1c5e20331223bd786f1f12a56c51cc8c6841bd",
+    "src/content/shared/report-task-link.css": "708b794f8f635ea9328b93d5ed5cdc8a6cca7b04215390ac6eb5616532f7a747",
+    "src/content/shared/ReportDisclosure.jsx": "f559abc00fbd4e01f8276d9df8ed2c7db3ea001a0068119c0d82b4243991b746",
+    "src/content/shared/ReportTaskLink.jsx": "7fc3cabbab44aee60a98b22038842704f7b097d9cb417f38be58133ea4305f88",
+    "src/content/shared/SortableDashboardLayout.jsx": "e072e1e11812bfc3cac5ebd040f2c0cebbe22f04a9034ce84e3d49e7271f3a99",
+    "src/data.json": "c5561d61ebdae8687dbaf293f6ffda084558c7643f279f16ae32eb3c013c8ad1",
+    "src/theme.css": "2b60ca06d707f67c76f7b9aed4fdcef6dab486f3ec371a558398db260f4c2cb4"
+  }
+}
