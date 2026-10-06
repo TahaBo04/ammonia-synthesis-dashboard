@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import {defaults,REPORT_REFERENCE,simulate,optimize,materialBalance,fields,PRODUCTION} from '../src/content/dashboard/model.mjs';
+import {defaults,REPORT_REFERENCE,simulate,optimize,materialBalance,dimensionReactor,fields,PRODUCTION} from '../src/content/dashboard/model.mjs';
 
 const near=(actual,expected,rel=1e-9)=>assert.ok(Math.abs(actual-expected)<=rel*Math.max(1,Math.abs(expected)),`${actual} != ${expected}`);
 const reference=(overrides={})=>simulate(REPORT_REFERENCE,{...defaults,...overrides},true,0.0005);
@@ -20,6 +20,17 @@ test('8256-hour report reference preserves the three-bed operating point',()=>{
  for(const species of ['N2','H2'])near(b.fresh[species].t_an+b.recycle[species].t_an,b.reactor[species].t_an);
  const exported=fields(r);
  assert.equal(exported.heures_marche_an,8256);near(exported.N2_frais_t_an,b.fresh.N2.t_an);
+});
+
+test('preliminary reactor geometry closes bed volumes and pressure-shell basis',()=>{
+ const r=reference(),d=dimensionReactor(r);
+ near(d.annulusArea,Math.PI/4*(2.4**2-0.8**2));
+ for(let i=0;i<r.beds.length;i++)near(d.bedHeights[i]*d.annulusArea,r.beds[i].mass/defaults.density);
+ near(d.totalBedHeight,3.766547377997019);
+ near(d.tangentLength,6.166547377997019);near(d.overallHeight,7.5665473779970185);
+ near(d.vesselID,2.8);near(d.vesselOD,3.16);near(d.nominalThickness,180);
+ near(d.shellCalculated,165.7906976744186);near(d.headCalculated,156.84615384615384);
+ assert.ok(d.radialVelocities.every(v=>v>0&&v<0.2));
 });
 
 test('a 3% separator purge increases fresh demand and closes the overall mass balance',()=>{

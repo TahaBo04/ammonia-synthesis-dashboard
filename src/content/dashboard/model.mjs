@@ -1,5 +1,5 @@
 // Screening model. Thermodynamics: NIST Shomate; kinetics and costs are explicit assumptions.
-export const VERSION = 'NH3-screening-1.1';
+export const VERSION = 'NH3-screening-1.2';
 export const MW = 17.03052;
 export const PRODUCTION = 100000;
 // Operating point retained by the report revision of 27 September 2026.
@@ -147,5 +147,28 @@ export function materialBalance(r){
  const mixture=n=>({N2:flow(n,28.0134),H2:flow(3*n,2.01588)});
  return {hours,production:flow(r.fNH3,MW),fresh:mixture(r.freshN),reactor:mixture(r.reactN),recycle:mixture(r.recycleN),purge:mixture(r.purgeN),recycleFraction:r.recycleN/r.reactN};
 }
-export function fields(r){const b=materialBalance(r);return {modele:VERSION,classification:'simulation non calibrée; coûts hypothétiques et partiels',production_t_an:PRODUCTION,heures_marche_an:r.hours,lits:r.N,pression_bar:r.P,T_entrees_C:r.beds.map(b=>b.Tin).join(' / '),seuils_vitesse:r.beds.map(b=>b.threshold).join(' / '),conversion_passage:r.X,conversion_globale:r.globalX,catalyseur_kg:r.mass,recycle_sur_frais:r.recycleRatio,fraction_recycle_entree:b.recycleFraction,N2_frais_kmol_h:r.freshN,H2_frais_kmol_h:3*r.freshN,N2_recycle_kmol_h:r.recycleN,N2_purge_kmol_h:r.purgeN,N2_frais_t_an:b.fresh.N2.t_an,H2_frais_t_an:b.fresh.H2.t_an,N2_reacteur_t_an:b.reactor.N2.t_an,H2_reacteur_t_an:b.reactor.H2.t_an,N2_recycle_t_an:b.recycle.N2.t_an,H2_recycle_t_an:b.recycle.H2.t_an,N2_purge_t_an:b.purge.N2.t_an,H2_purge_t_an:b.purge.H2.t_an,compression_frais_MW:r.freshMW,compression_recycle_MW:r.recycleMW,energie_chimique_MW:r.rxnMW,intercooling_MW:r.qInterMW,electricite_brute_MW:r.grossMW,electricite_nette_achetee_MW:r.netMW,CAPEX_MAD:r.capex,TAC_MAD_an:r.tac,cout_gaz_frais_MAD_an:r.annualFeed,TAC_MAD_an_hors_feed:r.tac-r.annualFeed,cout_partiel_MAD_t:r.cost};}
+export const MECHANICAL_BASIS=Object.freeze({
+ basketOD:2.4,collectorOD:0.8,vesselID:2.8,radialClearance:0.2,
+ topPlenum:0.6,bottomPlenum:0.6,interbedSpace:0.6,headDepth:0.7,
+ designPressureMin:150,designPressureFactor:1.1,wallTemperature:200,
+ allowableStress:138,weldEfficiency:1,corrosionAllowance:3,gasZ:1.1
+});
+export function dimensionReactor(r,basis=MECHANICAL_BASIS){
+ const annulusArea=Math.PI/4*(basis.basketOD**2-basis.collectorOD**2);
+ const bedHeights=r.beds.map(b=>(b.mass/r.mass*r.volume)/annulusArea);
+ const totalBedHeight=bedHeights.reduce((sum,h)=>sum+h,0);
+ const tangentLength=totalBedHeight+basis.topPlenum+basis.bottomPlenum+Math.max(0,r.N-1)*basis.interbedSpace;
+ const overallHeight=tangentLength+2*basis.headDepth;
+ const designPressure=Math.max(basis.designPressureMin,Math.ceil(r.P*basis.designPressureFactor/5)*5);
+ const pressureMPa=designPressure/10,radiusMm=basis.vesselID*500,diameterMm=basis.vesselID*1000;
+ const shellCalculated=pressureMPa*radiusMm/(basis.allowableStress*basis.weldEfficiency-0.6*pressureMPa)+basis.corrosionAllowance;
+ const headCalculated=pressureMPa*diameterMm/(2*basis.allowableStress*basis.weldEfficiency-0.2*pressureMPa)+basis.corrosionAllowance;
+ const nominalThickness=Math.ceil(Math.max(shellCalculated,headCalculated)*1.08/10)*10;
+ const inletMolarFlow=4*r.reactN;
+ const inletActualFlow=inletMolarFlow*0.083144626*(r.beds[0].Tin+273.15)/r.P*basis.gasZ/3600;
+ const meanRadius=(basis.basketOD+basis.collectorOD)/4;
+ const radialVelocities=bedHeights.map(h=>inletActualFlow/(2*Math.PI*meanRadius*h));
+ return {...basis,annulusArea,bedHeights,totalBedHeight,tangentLength,overallHeight,designPressure,shellCalculated,headCalculated,nominalThickness,vesselOD:basis.vesselID+2*nominalThickness/1000,inletActualFlow,radialVelocities};
+}
+export function fields(r){const b=materialBalance(r),d=dimensionReactor(r);return {modele:VERSION,classification:'simulation non calibrée; coûts hypothétiques et partiels; dimensionnement mécanique préliminaire non certifié',production_t_an:PRODUCTION,heures_marche_an:r.hours,lits:r.N,pression_bar:r.P,T_entrees_C:r.beds.map(b=>b.Tin).join(' / '),seuils_vitesse:r.beds.map(b=>b.threshold).join(' / '),conversion_passage:r.X,conversion_globale:r.globalX,catalyseur_kg:r.mass,recycle_sur_frais:r.recycleRatio,fraction_recycle_entree:b.recycleFraction,N2_frais_kmol_h:r.freshN,H2_frais_kmol_h:3*r.freshN,N2_recycle_kmol_h:r.recycleN,N2_purge_kmol_h:r.purgeN,N2_frais_t_an:b.fresh.N2.t_an,H2_frais_t_an:b.fresh.H2.t_an,N2_reacteur_t_an:b.reactor.N2.t_an,H2_reacteur_t_an:b.reactor.H2.t_an,N2_recycle_t_an:b.recycle.N2.t_an,H2_recycle_t_an:b.recycle.H2.t_an,N2_purge_t_an:b.purge.N2.t_an,H2_purge_t_an:b.purge.H2.t_an,compression_frais_MW:r.freshMW,compression_recycle_MW:r.recycleMW,energie_chimique_MW:r.rxnMW,intercooling_MW:r.qInterMW,electricite_brute_MW:r.grossMW,electricite_nette_achetee_MW:r.netMW,reacteur_D_interieur_m:d.vesselID,reacteur_D_exterieur_m:d.vesselOD,reacteur_hauteur_totale_m:d.overallHeight,epaisseur_nominale_preliminaire_mm:d.nominalThickness,CAPEX_MAD:r.capex,TAC_MAD_an:r.tac,cout_gaz_frais_MAD_an:r.annualFeed,TAC_MAD_an_hors_feed:r.tac-r.annualFeed,cout_partiel_MAD_t:r.cost};}
 export function csv(rows){if(!rows.length)return '';const keys=Object.keys(rows[0]);const escape=v=>'"'+String(v??'').replaceAll('"','""')+'"';return '\uFEFF'+[keys.map(escape).join(';'),...rows.map(r=>keys.map(k=>escape(r[k])).join(';'))].join('\r\n');}
